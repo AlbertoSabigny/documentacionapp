@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación - App de Seguimiento de Hábitos</title>
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --text-color: #333;
+            --bg-color: #fff;
+            --sidebar-bg: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        nav {
+            width: 280px;
+            background: var(--sidebar-bg);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0.5rem 0;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            margin-left: 280px;
+            max-width: 900px;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        ul {
+            margin-left: 2rem;
+        }
+
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .tech-item {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        code {
+            background: #f1f1f1;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>Contenido</h2>
+        <ul>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#requisitos">Análisis de Requisitos</a>
+                <ul>
+                    <li><a href="#req-funcionales">Requisitos Funcionales</a></li>
+                    <li><a href="#req-no-funcionales">Requisitos No Funcionales</a></li>
+                </ul>
+            </li>
+            <li><a href="#datos">Diseño de Datos</a></li>
+            <li><a href="#interfaz">Diseño de la Interfaz</a></li>
+            <li><a href="#arquitectura">Arquitectura del Sistema</a></li>
+            <li><a href="#implementacion">Implementación</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Aplicación Móvil de Seguimiento de Hábitos</h1>
+        
+        <section id="introduccion">
+            <h2>Introducción</h2>
+            <p>Este documento detalla la especificación del diseño de una aplicación Android para el seguimiento de hábitos, desarrollada con Kotlin y Jetpack Compose. La aplicación está diseñada para ayudar a los usuarios a gestionar sus hábitos diarios mediante un sistema intuitivo de creación, edición y seguimiento de actividades.</p>
+            
+            <div class="tech-stack">
+                <span class="tech-item">Kotlin</span>
+                <span class="tech-item">Jetpack Compose</span>
+                <span class="tech-item">Firebase</span>
+                <span class="tech-item">Room</span>
+            </div>
+        </section>
+
+        <section id="requisitos">
+            <h2>Análisis de Requisitos</h2>
+            
+            <section id="req-funcionales">
+                <h3>Requisitos Funcionales</h3>
+                <ul>
+                    <li><strong>Login</strong>
+                        <ul>
+                            <li>Registro e inicio de sesión mediante Firebase Authentication</li>
+                            <li>Gestión segura de credenciales</li>
+                        </ul>
+                    </li>
+                    <li><strong>Gestión de Hábitos</strong>
+                        <ul>
+                            <li>CRUD completo de hábitos</li>
+                            <li>Programación semanal (L-D)</li>
+                            <li>Sistema de recordatorios con AlarmManager</li>
+                        </ul>
+                    </li>
+                    <li><strong>Pantalla Home</strong>
+                        <ul>
+                            <li>Vista organizada por días</li>
+                            <li>Navegación intuitiva a detalles</li>
+                        </ul>
+                    </li>
+                    <li><strong>Detalles del Hábito</strong>
+                        <ul>
+                            <li>Configuración de nombre</li>
+                            <li>Selección de días</li>
+                            <li>Configuración de notificaciones</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="req-no-funcionales">
+                <h3>Requisitos No Funcionales</h3>
+                <ul>
+                    <li>Seguridad robusta con Firebase Authentication</li>
+                    <li>Alto rendimiento y optimización de recursos</li>
+                    <li>UI/UX siguiendo Material Design</li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="datos">
+            <h2>Diseño de Datos</h2>
+            <p>La aplicación utiliza una combinación de almacenamiento local y servicios en la nube:</p>
+            
+            <h3>Datos de Aplicación</h3>
+            <ul>
+                <li><code>Room Database</code> para hábitos y configuraciones</li>
+                <li><code>SharedPreferences</code> para preferencias de usuario</li>
+                <li>Integración con <code>AlarmManager</code> para recordatorios</li>
+            </ul>
+        </section>
+
+        <section id="interfaz">
+            <h2>Diseño de la Interfaz de Usuario</h2>
+            <p>La interfaz se construye completamente con Jetpack Compose, implementando:</p>
+            <ul>
+                <li>Pantalla de Login</li>
+                <li>Home con lista de hábitos</li>
+                <li>Editor de hábitos</li>
+                <li>Sistema de notificaciones</li>
+            </ul>
+        </section>
+
+        <section id="arquitectura">
+            <h2>Arquitectura del Sistema</h2>
+            <p>La aplicación implementa MVVM y Clean Architecture:</p>
+            <ul>
+                <li><strong>Model:</strong> Room + Retrofit</li>
+                <li><strong>View:</strong> Jetpack Compose</li>
+                <li><strong>ViewModel:</strong> Android Architecture Components</li>
+            </ul>
+            
+            <h3>Componentes Principales</h3>
+            <ul>
+                <li>Frontend en Kotlin con Jetpack Compose</li>
+                <li>Backend con Firebase Authentication</li>
+                <li>Inyección de dependencias con Dagger Hilt</li>
+            </ul>
+        </section>
+
+        <section id="implementacion">
+            <h2>Implementación</h2>
+            <div class="tech-stack">
+                <h3>Stack Tecnológico:</h3>
+                <span class="tech-item">Kotlin</span>
+                <span class="tech-item">Jetpack Compose</span>
+                <span class="tech-item">Room</span>
+                <span class="tech-item">Firebase Auth</span>
+                <span class="tech-item">Dagger Hilt</span>
+                <span class="tech-item">AlarmManager</span>
+                <span class="tech-item">Retrofit</span>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
